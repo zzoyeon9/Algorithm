@@ -1,128 +1,71 @@
-package asdasd;
-
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class Dijkstra {
 
-	static int casenum, edgenum, vertexnum, startedge, auxiliarynode, finishnode, result;
-	static boolean ispossible=true;
-	static int []  shortestpath; static int [][] graph;
-	static boolean [] visited; static String path=""; 
+    HashMap<String, ArrayList<Edge>> graph = new HashMap<String, ArrayList<Edge>>();
 
-	public static void main(String[] args) {
+    public HashMap<String, Integer> dijkstraFunc(HashMap<String, ArrayList<Edge>> graph, String start){
+        //ì´ˆê¸°í™”
+        HashMap<String, Integer> distances = new HashMap<>();
+        Edge node;
+        ArrayList<Edge> nodelist;
 
-		Scanner input = new Scanner(System.in);
+        for (String key : graph.keySet()){
+            distances.put(key, Integer.MAX_VALUE);
+        }
+        distances.put(start, 0);
 
-		casenum = input.nextInt();
-		input.nextLine();
+        PriorityQueue<Edge> priorQueue = new PriorityQueue<Edge>();
+        priorQueue.add(new Edge(start, distances.get(start)));
+        //
+        //ìš°ì„ ìˆœìœ„ íì—ì„œ ê°’(ê°„ì„ )ì„ í•˜ë‚˜ì”© ë¹¼ì„œ í•´ë‹¹ ê°„ì„  ê°€ì¤‘ì¹˜ë¥¼ distancesì— ë„£ê¸°
+        while(priorQueue.size()>0) {
+            //íì—ì„œ ê°„ì„  ë¹¼ê¸°
+            node = priorQueue.poll();
+            //í•´ë‹¹ ê°„ì„ ì˜ ëª©ì ì§€ ë…¸ë“œ ë° ê°€ì¤‘ì¹˜ ì„ì‹œ ë³€ìˆ˜ì— ì €ì¥
+            String curVertax = node.vertax;
+            int curDis = node.distance;
 
-		for(int i=0;i<casenum;i++){
+            //ëº€ ê°„ì„ ìœ¼ë¡œë¶€í„° ëª©ì ì§€ ë…¸ë“œê¹Œì§€ì˜ ê°€ì¤‘ì¹˜ ì •ë³´ë¥¼ distancesì— ë„£ê¸°
+            if(distances.get(curVertax)<curDis)
+                continue;
 
-			String temp = input.nextLine();
-			StringTokenizer temp2 = new StringTokenizer(temp," ");
+            nodelist = graph.get(curVertax);//distances.put(curVertax, curDis);
 
-			edgenum = Integer.parseInt(temp2.nextToken());
-			vertexnum = Integer.parseInt(temp2.nextToken());
-			result = 0;
+            for(int i=0;i<nodelist.size();i++){
+                Edge curNode = nodelist.get(i);
+                String targetVer = curNode.vertax;
+                int targetDis = curNode.distance;
+                //í•´ë‹¹ ê°„ì„ ì˜ ëª©ì ì§€ ë…¸ë“œê°€ ì´ë¯¸ ê°€ì¤‘ì¹˜ ë°°ì—´ì— ë“¤ì–´ì™€ìˆë‹¤ë©´
 
-			shortestpath = new int[edgenum+1];
-
-			for(int j=1;j<=edgenum;j++) 
-				shortestpath[j]=1000;//Ã³À½¿¡ ÃÖ¼Ò °æ·Î¸¦ ¹«ÇÑÀ¸·Î ÃÊ±âÈ­
-
-			graph = new int [edgenum+1][edgenum+1];
-			visited = new boolean[edgenum+1];
-
-			for(int j=0;j<vertexnum;j++) {
-
-				StringTokenizer temp3 = new StringTokenizer(input.nextLine()," ");
-
-				int node0 = Integer.parseInt(temp3.nextToken());
-				int node1 = Integer.parseInt(temp3.nextToken());
-				int distance = Integer.parseInt(temp3.nextToken());
-
-				graph[node0][node1] = distance;
-				graph[node1][node0] = distance;
-			}
-
-			temp = input.nextLine();
-			temp2 = new StringTokenizer(temp, " ");
-
-			startedge = Integer.parseInt(temp2.nextToken());
-			auxiliarynode = Integer.parseInt(temp2.nextToken());
-			finishnode = Integer.parseInt(temp2.nextToken());
+                if(curDis + targetDis <distances.get(targetVer)) {
+                    distances.put(targetVer, curDis + targetDis);
+                    priorQueue.add(new Edge(targetVer,curDis + targetDis));//priorQueue.add(curNode); ì´ê±° í…ŒìŠ¤íŠ¸í•˜ê³  ë„˜ì–´ê°€
+                }
 
 
+            }
+        }
+        return distances;
+    }
 
 
+    public static void main(String[] args) {
+
+        Dijkstra inst = new Dijkstra();
+
+        inst.graph.put("A", new ArrayList<Edge>(Arrays.asList(new Edge("B",8), new Edge("C",1), new Edge("D",2))));
+        inst.graph.put("B", new ArrayList<Edge>());
+        inst.graph.put("C", new ArrayList<Edge>(Arrays.asList(new Edge("B",5), new Edge("D",2))));
+        inst.graph.put("D", new ArrayList<Edge>(Arrays.asList(new Edge("E",3), new Edge("F",5))));
+        inst.graph.put("E", new ArrayList<Edge>(Arrays.asList(new Edge("F",1))));
+        inst.graph.put("F", new ArrayList<Edge>(Arrays.asList(new Edge("A",5))));
+
+        System.out.println(inst.dijkstraFunc(inst.graph, "A"));
 
 
-			Searching(startedge,shortestpath);//±× Á¤Á¡À¸·ÎºÎÅÍ ¸ñÀûÁö±îÁöÀÇ ÃÖ¼Ò°Å¸®¸¦ ±¸ÇÑ ÈÄ
-			result +=shortestpath[auxiliarynode];
-
-			visited = new boolean[edgenum+1];
-			for(int j=1;j<=edgenum;j++) 
-				shortestpath[j]=1000;//Ã³À½¿¡ ÃÖ¼Ò °æ·Î¸¦ ¹«ÇÑÀ¸·Î ÃÊ±âÈ­
-
-			Searching(auxiliarynode,shortestpath);//±× Á¤Á¡À¸·ÎºÎÅÍ ¸ñÀûÁö±îÁöÀÇ ÃÖ¼Ò°Å¸®¸¦ ±¸ÇÑ ÈÄ
-			result +=shortestpath[finishnode];
-
-			int count=0; 
-
-			for(int y=1;y<graph[finishnode].length;y++) 
-				if(graph[finishnode][y]==0)
-					count++;
-			if(count == graph[finishnode].length-1)
-				ispossible=false;
-
-			if(ispossible)
-				System.out.println(result);
-			else System.out.println(-1);
-		}
-	}
-	static public int getMinindex() {  //ÃÖ¼Ò °Å¸® Á¤Á¡ ¹İÈ¯
-
-		int min = 1000; int index=0;	
-
-		for(int i=1;i<shortestpath.length;i++)
-			if(shortestpath[i]<min) 
-				if(!visited[i]){
-					min = shortestpath[i];
-					index= i;
-				}
-		return index;
-	}
-
-	static public void Searching(int currentnode, int[] shortestpath) {
-		int count=0;
-		for(int y=1;y<graph[currentnode].length;y++) 
-			if(graph[currentnode][y]==0)
-				count++;
-		if(count == graph[currentnode].length-1) {
-			ispossible=false;
-			return;
-		}
-		visited[currentnode]=true;
-		shortestpath[currentnode]=0;
-
-		for(int i=1;i<graph[currentnode].length;i++)//Ã³À½ ½ÃÀÛ ³ëµå¿¡¼­ ÀÎÁ¢³ëµå±îÁöÀÇ ºñ¿ë °»½Å
-		{
-			if(graph[currentnode][i]!=0)
-				shortestpath[i]=graph[currentnode][i];
-		}
-		for(int i=1;i<=edgenum;i++)//¸ğµç ³ëµå¸¦ ´Ù µ¹ ¶§ ±îÁö
-		{
-			int next = getMinindex();//¹æ¹®ÇÏÁö ¾ÊÀº ³ëµåµé Áß °¡Àå ºñ¿ëÀÌ ÀûÀº ³ëµå ¼±ÅÃ
-			visited[next]=true;
-
-			for(int j=1;j<=edgenum;j++)
-			{
-				if(graph[next][j]!=0)
-					if(!visited[j])
-						if((shortestpath[next] + graph[next][j]) < shortestpath[j])
-							shortestpath[j] = shortestpath[next] + graph[next][j]; 
-			}
-		}
-	}
+    }
 }
