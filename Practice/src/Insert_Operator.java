@@ -2,7 +2,7 @@ package Practice.src;
 
 import java.util.Scanner;
 
-public class Main {
+public class Insert_Operator {
 
     static private int N, max, min;
     static private int [] nums, operators, operSeq;
