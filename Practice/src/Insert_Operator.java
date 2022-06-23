@@ -4,15 +4,14 @@ import java.util.Scanner;
 
 public class Insert_Operator {
 
-    static private int N, max, min;
+    static private int N, max, min, result;
     static private int [] nums, operators, operSeq;
 
     static StringBuilder sb = new StringBuilder();
 
-    static public void func(int seq){
+    static public void func(int seq, int preResult){
 
         if(seq == N) {
-            int result = Calculation();
             max = Math.max(max, result);
             min = Math.min(min, result);
         }
@@ -21,27 +20,18 @@ public class Insert_Operator {
                 if(operators[i]>0) {
                     operSeq[seq] = i;
                     operators[i]--;
-                    func(seq + 1);
+                    if(i==1)
+                        result = preResult + nums[seq+1];
+                    else if(i==2)
+                        result = preResult - nums[seq+1];
+                    else if(i==3)
+                        result = preResult * nums[seq+1];
+                    else
+                        result = preResult / nums[seq+1];
+                    func(seq + 1,result);
                     operators[i]++;
-                }
+                    }
     }
-
-    private static int Calculation() {
-        int result = nums[1];
-
-        for(int i=1;i<N;i++){
-            if(operSeq[i]==1)
-                result = result + nums[i+1];
-            if(operSeq[i]==2)
-                result = result - nums[i+1];
-            if(operSeq[i]==3)
-                result = result * nums[i+1];
-            if(operSeq[i]==4)
-                result = result / nums[i+1];
-        }
-        return result;
-    }
-
 
     static public void Input(){
         Scanner sc = new Scanner(System.in);
@@ -72,7 +62,7 @@ public class Insert_Operator {
     public static void main(String[] args) {
 
         Input();
-        func(1);
+        func(1,nums[1]);
         Output();
 
     }
