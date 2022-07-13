@@ -3,7 +3,7 @@ package Practice.src;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class EatorEaten {
+public class Bj_7795 {
 
     static Scanner sc = new Scanner(System.in);
     static int [] A,B;

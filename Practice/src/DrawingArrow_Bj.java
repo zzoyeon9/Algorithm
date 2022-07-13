@@ -2,7 +2,7 @@ package Practice.src;
 
 import java.util.*;
 
-public class DrawingArrow {
+public class Bj_15970 {
 
     private static int N; // 점 개수
     private static int x, y; //x : 점 위치 y : 점 색깔

@@ -20,8 +20,6 @@ public class NandM_3 {
 
     public static void func(int count){
 
-
-
         if(count==m) {
             for (int i=0;i<m;i++)
                 sb.append(seq[i] + " ");
