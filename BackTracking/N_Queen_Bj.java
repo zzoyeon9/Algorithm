@@ -2,7 +2,7 @@ package Practice.src;
 
 import java.util.Scanner;
 
-public class N_Queen {
+public class N_Queen_Bj {
 
     static int [] board;
     static int [] queen;

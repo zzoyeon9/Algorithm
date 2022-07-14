@@ -3,7 +3,7 @@ package Practice.src;
 import java.util.Arrays;
 import java.util.Scanner;
 
-    public class NandM_1 {
+    public class NandM_1_Bj {
 
         static StringBuilder sb = new StringBuilder();
         static int n, m;
@@ -13,8 +13,8 @@ import java.util.Scanner;
         static public void Input(){
             Scanner input = new Scanner(System.in);
             String num = input.nextLine();
-            NandM_1.n = Integer.parseInt(num.split(" ")[0]);
-            NandM_1.m = Integer.parseInt(num.split(" ")[1]);
+            NandM_1_Bj.n = Integer.parseInt(num.split(" ")[0]);
+            NandM_1_Bj.m = Integer.parseInt(num.split(" ")[1]);
         }
 
         public static void func(int count){

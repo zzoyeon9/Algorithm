@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class FileNameSorting {
+public class FileNameSorting_Pg {
 
     private static String[] files;
 

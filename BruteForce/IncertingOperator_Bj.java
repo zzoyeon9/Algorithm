@@ -2,7 +2,7 @@ package Practice.src;
 
 import java.util.Scanner;
 
-public class Incerting_Operator_Bj {
+public class IncertingOperator_Bj {
 
     static private int N, max, min, result;
     static private int [] nums, operators, operSeq;
@@ -17,9 +17,9 @@ public class Incerting_Operator_Bj {
         }
         else
             for(int i=1;i<=4;i++)
-                if(operators[i]>0) {
-                    operSeq[seq] = i;
-                    operators[i]--;
+                if(operators[i]>0) { //해당 연산자가 아직 남아있으면
+                    operSeq[seq] = i; //이번 차례에 해당 연산자 등록
+                    operators[i]--; // 해당 연산자 사용했으니 수량 -1
                     if(i==1)
                         result = preResult + nums[seq+1];
                     else if(i==2)
@@ -29,8 +29,10 @@ public class Incerting_Operator_Bj {
                     else
                         result = preResult / nums[seq+1];
                     func(seq + 1,result);
-                    operators[i]++;
+                    operators[i]++; //
                     }
+            //
+            // ++-*/
     }
 
     static public void Input(){
