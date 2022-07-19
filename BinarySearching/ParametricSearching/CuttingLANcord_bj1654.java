@@ -11,12 +11,12 @@ public class CuttingLANcord_bj1654 {
     private static StringBuilder sb = new StringBuilder();
 
     private static int K,N;
-    private static int answer;
+    private static long answer;
     private static int [] lines;
 
     public static void func(){
 
-        int left=1, right;
+        long left=1, right;
 
         Arrays.sort(lines);
         right = lines[K-1];
