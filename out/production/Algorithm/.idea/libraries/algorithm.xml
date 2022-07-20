@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="algorithm">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/algorithm.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
