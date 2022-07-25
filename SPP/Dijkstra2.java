@@ -1,4 +1,4 @@
-package asdasd;
+package SPP;
 
 import java.util.Scanner;
 
@@ -46,7 +46,7 @@ public class Dijkstra2 {
 		}
 		System.out.println(goldnum);
 	}
-	static public int getMinindex() {  //ÃÖ¼Ò °Å¸® Á¤Á¡ ¹ÝÈ¯
+	static public int getMinindex() {  //ï¿½Ö¼ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 
 		int min = 1000; int index=0;	
 
@@ -64,14 +64,14 @@ public class Dijkstra2 {
 		visited[currentnode]=true;
 		shortestpath[currentnode]=0;
 
-		for(int i=0;i<map[currentnode].length;i++)//Ã³À½ ½ÃÀÛ ³ëµå¿¡¼­ ÀÎÁ¢³ëµå±îÁöÀÇ ºñ¿ë °»½Å
+		for(int i=0;i<map[currentnode].length;i++)//Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if(!map[currentnode][i].equals("0"))
 				shortestpath[i]=Integer.parseInt(map[currentnode][i]);
 		}
-		for(int i=0;i<legionnum;i++)//¸ðµç ³ëµå¸¦ ´Ù µ¹ ¶§ ±îÁö
+		for(int i=0;i<legionnum;i++)//ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
-			int next = getMinindex();//¹æ¹®ÇÏÁö ¾ÊÀº ³ëµåµé Áß °¡Àå ºñ¿ëÀÌ ÀûÀº ³ëµå ¼±ÅÃ
+			int next = getMinindex();//ï¿½æ¹®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			visited[next]=true;
 
 			for(int j=0;j<legionnum;j++)

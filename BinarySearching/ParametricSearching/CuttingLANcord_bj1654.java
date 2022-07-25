@@ -1,4 +1,4 @@
-package BinarySearching;
+package BinarySearching.ParametricSearching;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,13 +19,17 @@ public class CuttingLANcord_bj1654 {
         long left=1, right;
 
         Arrays.sort(lines);
+        //539 457 743 802
         right = lines[K-1];
 
         while(left<=right){
-            long mid = (left+right)/2;
+
+            long mid = (left+right)/2; // 200
             int sum=0;
+
             for(int i=0;i<K;i++)
                 sum+=lines[i]/mid;
+
             if(sum>=N) {
                 answer = mid;
                 left = mid + 1;
@@ -50,5 +54,6 @@ public class CuttingLANcord_bj1654 {
     public static void main(String[] args) throws IOException{
         input();
         func();
+
     }
 }

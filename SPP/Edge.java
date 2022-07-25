@@ -1,3 +1,5 @@
+package SPP;
+
 public class Edge implements Comparable<Edge>{
 
     public String vertax;
