@@ -11,17 +11,14 @@ public class Sequence_bj2559 {
     private static int [] seqs;
 
     public static void func() {
-        int left=0, answer=Integer.MIN_VALUE;
-        while(left+K<=N){
-            int sum=0, count=0;
+        int right=1, sum=0, answer=Integer.MIN_VALUE;
+        for(int left=1;left+K-1<=N;left++){
+            sum-=seqs[left-1];
 
-           for(int i=left;i<left+K;i++)
-               sum +=seqs[i];
+           while(right<=left+K-1)
+                sum+=seqs[right++];
 
-            if(sum > answer)
-                answer = sum;
-
-            left++;
+           answer = Math.max(sum, answer);
         }
         System.out.println(answer);
     }
@@ -31,9 +28,9 @@ public class Sequence_bj2559 {
         StringTokenizer st= new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken()); K = Integer.parseInt(st.nextToken());
-        seqs = new int[N];
+        seqs = new int[N+1];
         st = new StringTokenizer(br.readLine());
-        for(int i=0;i<N;i++)
+        for(int i=1;i<=N;i++)
             seqs[i] = Integer.parseInt(st.nextToken());
     }
 
