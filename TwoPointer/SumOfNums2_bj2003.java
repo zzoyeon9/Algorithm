@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class SumOfNumber {
+public class SumOfNums2_bj2003 {
 
     private static int N,M;
     private static int [] seqs;
