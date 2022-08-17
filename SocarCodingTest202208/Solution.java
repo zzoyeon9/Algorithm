@@ -1,4 +1,4 @@
-package SocarCordingTest202208;
+package SocarCodingTest202208;
 
 import java.util.LinkedList;
 import java.util.Queue;
