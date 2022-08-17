@@ -1,9 +1,9 @@
-package Practice.src;
+package SocarCordingTest202208;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Solution {
+public class Solution2 {
     /*
     public int[] solution(int n, int m, String [] survey){
        //1. 각 앱 별로 최근 5일 내 이용한 시간, 전체 시간을 조사해서 1차원 배열에 저장하자.
