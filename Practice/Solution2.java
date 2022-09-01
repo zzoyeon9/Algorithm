@@ -1,4 +1,4 @@
-package SocarCordingTest202208;
+package Practice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
