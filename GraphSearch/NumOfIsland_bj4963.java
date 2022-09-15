@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class NumOfIsland_bj4963 {
 
@@ -26,7 +27,6 @@ public class NumOfIsland_bj4963 {
             isVisit[nh][nw] = true;
             dfs(nh, nw);
         }
-
     }
 
     public static int searchIslandNum() {
@@ -42,32 +42,27 @@ public class NumOfIsland_bj4963 {
         return count;
     }
 
-
     public static void func() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String temp = br.readLine();
 
-        while (!temp.equals("0 0")) {
+        while (true) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
 
-            w = Integer.parseInt(temp.split(" ")[0]);
-            h = Integer.parseInt(temp.split(" ")[1]);
+            w = Integer.parseInt(st.nextToken());
+            h = Integer.parseInt(st.nextToken());
+            if(w==0 && h==0) break;
+
             map = new int[h][w];
             isVisit = new boolean[h][w];
 
             for (int i = 0; i < h; i++) {
-                temp = br.readLine();
+                st = new StringTokenizer(br.readLine());
 
-                if (temp.length() == 1)
-                    map[0][0] = Integer.parseInt(temp);
-                else
-                    for (int j = 0; j < temp.split(" ").length; j++)
-                        map[i][j] = Integer.parseInt(temp.split(" ")[j]);
+                for (int j = 0; j < w; j++)
+                    map[i][j] = Integer.parseInt(st.nextToken());
             }
-            answers.add(searchIslandNum());
-            temp = br.readLine();
+            System.out.println(searchIslandNum());
         }
-        for (int i = 0; i < answers.size(); i++)
-            System.out.println(answers.get(i));
     }
 
     public static void main(String[] args) throws IOException {
