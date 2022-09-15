@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main {
+public class WiseKnight_bj18404 {
 
     private static int N, M, sx, sy;
     private static String[][] map;
