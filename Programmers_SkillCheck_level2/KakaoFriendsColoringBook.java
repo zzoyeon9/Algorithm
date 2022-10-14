@@ -1,4 +1,4 @@
-package Practice.src;
+package Programmers_SkillCheck_level2;
 
 import java.util.*;
 

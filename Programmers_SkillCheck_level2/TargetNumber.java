@@ -1,6 +1,6 @@
-package Practice.src;
+package Programmers_SkillCheck_level2;
 
-public class Solution {
+public class TargetNumber {
 
     int count = 0;
 
@@ -33,7 +33,7 @@ public class Solution {
         int[] nums2 = {4, 1, 2, 1};
         int tar2 = 4;
 
-        Solution s = new Solution();
+        TargetNumber s = new TargetNumber();
         System.out.println(s.solution(nums1, tar1));
         s.count = 0;
         System.out.println(s.solution(nums2, tar2));

@@ -1,8 +1,8 @@
-package Practice.src;
+package Programmers_SkillCheck_level2;
 
 import java.util.*;
 
-public class Solution {
+public class ParenthesisConversion {
 
     public String solution(String p) {
 
@@ -78,7 +78,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution s = new Solution();
+        ParenthesisConversion s = new ParenthesisConversion();
         String a = "(()())()";
         String b = ")(";
         String c ="()))((()";
