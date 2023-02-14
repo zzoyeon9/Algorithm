@@ -1,57 +1,61 @@
 package Programmers_Backend_Engineering;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
-public class Solution3 {
+class Solution {
+    public int[] solution(int[][] queries) {
+        //전체 배열 길이를 구하고 짝수면 i, length - i -1 / 홀수면 length/2 +-i
+        int[] answer = new int [queries.length];
 
-    private static boolean [][] isVisit;
-    private static Queue<Integer> que = new LinkedList<>();
-
-    public int solution(int N, int[][] mine, int[] P) {
-        int[][] map = new int[N + 1][N + 1];
-        int[][] dir = {{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}};
-
-        for (int i = 0; i < mine.length; i++) {
-            map[mine[i][0]][mine[i][1]] = -1;
-
-            for(int j=0;j<8;j++) {
-                if(mine[i][0] + dir[j][0]>0 && mine[i][1] + dir[j][1]>0 &&
-                        mine[i][0] + dir[j][0]<=N && mine[i][1] + dir[j][1]<=N
-                        && map[mine[i][0] + dir[j][0]][mine[i][1] + dir[j][1]]!=-1)
-                map[mine[i][0] + dir[j][0]][mine[i][1] + dir[j][1]] += 1;
-            }
-        }
-        int answer = 0;
-        isVisit = new boolean[N + 1][N + 1];
-        que.add(P[0]); que.add(P[1]);
-        isVisit[P[0]][P[1]]=true;
-        answer++;
-        while(!que.isEmpty()) {
-            int sY = que.poll();
-            int sX = que.poll();
-
-            for (int i = 0; i < 8; i++){
-                int nY = sY+dir[i][0];
-                int nX = sX+dir[i][1];
-                if(nY>0 && nX>0 && nY<=N && nX<=N)
-                    if(!isVisit[nY][nX] && map[nY][nX]!=-1){
-                        isVisit[nY][nX]=true;
-                        answer++;
-                        if(map[nY][nX]==0) {
-                            que.add(nY);
-                            que.add(nX);
-                        }
+        for(int i = 0; i < queries.length; i++) {
+            int result = 0;
+            if (queries[i].length % 2 == 0) {//짝수
+                for (int j = 0; j < queries[i].length / 2; j++) {
+                    while (queries[i][j] > queries[i][queries[i].length - 1 - j]) {
+                        queries[i][j]--;
+                        result++;
                     }
+                    while (queries[i][j] < queries[i][queries[i].length - 1 - j]) {
+                        queries[i][queries[i].length - j - 1]--;
+                        result++;
+                    }
+
+                }
+            } else {//홀수
+                for (int j = 1; j <= queries[i].length / 2; j++) {
+                    int center = queries[i].length / 2;
+
+                    while (queries[i][center - j] > queries[i][center + j]) {
+                        queries[i][center - j]--;
+                        result++;
+                    }
+                    while (queries[i][center - j] < queries[i][center + j]) {
+                        queries[i][center + j]--;
+                        result++;
+                    }
+                }
             }
+            answer[i] = result % 2;
+            System.out.println("answer[" + i +"] = " + answer[i]);
         }
         return answer;
     }
 
     public static void main(String[] args) {
-        Solution3 s = new Solution3();
-        int [][] mine = {{1,2},{2,2},{1,1},{2,1},{2,3},{3,1},{3,3}};
-        int [] p = {3,2};
-        System.out.println(s.solution(3,mine,p));
+        Solution s = new Solution();
+        int [][] arr = {{0,0,0,0,1},{5,4,3,2,1}, {0,1,0,1}, {1,3,2}};
+
+        s.solution(arr);
     }
 }
+/*
+— 코드를 입력하세요
+BRANCH_ID, NAME, ID, SALARY
+SELECT BRANCH_ID, NAME
+FROM EMPLOYEES e JOIN (SELECT BRANCH_ID, MAX(SALARY)
+                      FROM EMPLOYEES
+                      GROUP BY BRANCH_ID) m
+ON e.BRANCH_ID = m.BRANCH_ID
+GROUP BY BRANCH_ID
+ORDER BY BRANCH_ID, NAME ASC;
+ */

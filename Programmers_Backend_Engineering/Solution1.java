@@ -1,41 +1,46 @@
 package Programmers_Backend_Engineering;
 
-public class Solution1 {
+import java.util.*;
+class Solution1 {
+    public int solution(int[][] lotteries) {
 
-    public String solution(String src) {
-        String first = src.split("")[0];
-        String answer = first;
+        double [] chance = new double [lotteries.length];
+        List<Integer> list = new ArrayList<>();
 
-        while (src.length() != 0) {
+        for(int i = 0; i < lotteries.length; i++) {
+            double winner = lotteries[i][0];
+            double buyer = lotteries[i][1];
+            int sum = lotteries[i][2];
+            double probabilty = (winner / (buyer+1)) * 100.0;
+            if(probabilty>100)
+                probabilty=100.0;
 
-            if (src.split("")[0].equals("0")) {
-                int zeroCount = 0;
+            System.out.println("winner : " + winner + " buyer : " + buyer + " 당첨 확률 : " + probabilty);
+            chance[i] = probabilty;
+        }
+        int answer = 0;
+        double max = 0;
+        int maxSum = 0;
 
-                while (src.split("")[0].equals("0")) {
-                    src = src.replaceFirst("0", "");
-                    zeroCount++;
-                }
-                answer += (char)(zeroCount + 64);
-
-            } else {
-                int oneCount = 0;
-
-                while (src.split("")[0].equals("1")) {
-                    src = src.replaceFirst("1", "");
-                    oneCount++;
-                }
-                answer += (char)(oneCount + 64);
+        for(int i = 0; i < chance.length; i++) {
+            if(chance[i] > max) {
+                max = chance[i];
             }
         }
 
+        for(int i = 0; i < chance.length; i++) {
+            if(chance[i] == max) {
+                if(maxSum<lotteries[i][2]){
+                    maxSum = lotteries[i][2];
+                    answer = i+1;
+                }
+            }
+        }
         return answer;
     }
-
-
     public static void main(String[] args) {
-        Solution1 s = new Solution1();
-        System.out.println(s.solution("01"));
+        Solution s = new Solution();
+        int [][] arr= {{100,100,500}, {1000,1000,100}};
+        System.out.println(s.solution(arr));
     }
-
-
 }
