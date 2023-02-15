@@ -47,7 +47,7 @@ public class Statistics_bj2108 {
 
         List<Integer> mostFreNums = new ArrayList<>();
 
-        for(int key : num_count.keySet()) {//최고 빈도수 파악
+        for(int key : num_count.keySet()) {
             if(num_count.get(key)==mostFre)
                 mostFreNums.add(key);
         }
