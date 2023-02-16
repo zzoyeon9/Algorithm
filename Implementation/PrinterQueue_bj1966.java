@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class PrinterQueue {
+public class PrinterQueue_bj1966 {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -42,7 +42,7 @@ public class PrinterQueue {
 
     public static void main(String[] args) throws IOException {
 
-        PrinterQueue pq = new PrinterQueue();
+        PrinterQueue_bj1966 pq = new PrinterQueue_bj1966();
         StringTokenizer st = new StringTokenizer(br.readLine());
         int count = Integer.parseInt(st.nextToken());
         for(int i = 0; i < count; i++) {
