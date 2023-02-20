@@ -5,7 +5,7 @@ import java.io.*;
 
 import static java.lang.Math.max;
 
-public class Tetromino {
+public class Tetromino_bj14500 {
 
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static int [][] dir = {{0,-1}, {0,1}, {-1,0}, {1,0}};
@@ -86,7 +86,7 @@ public class Tetromino {
 
     public static void main(String[] args) throws IOException {
 
-        Tetromino m = new Tetromino();
+        Tetromino_bj14500 m = new Tetromino_bj14500();
         m.solution();
     }
 }
