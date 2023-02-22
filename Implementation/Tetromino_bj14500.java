@@ -2,7 +2,6 @@ package Implementation;
 
 import java.util.*;
 import java.io.*;
-
 import static java.lang.Math.max;
 
 public class Tetromino_bj14500 {
