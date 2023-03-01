@@ -3,7 +3,7 @@ package Implementation;
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class Snake_bj3190 {
 
     private static StringTokenizer st;
     private static int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Main m = new Main();
+        Snake_bj3190 m = new Snake_bj3190();
 
         N = Integer.parseInt(br.readLine());
         int K = Integer.parseInt(br.readLine());
